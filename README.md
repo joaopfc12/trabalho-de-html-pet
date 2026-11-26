@@ -70,6 +70,8 @@ EXPO_PUBLIC_BACK4APP_URL=https://parseapi.back4app.com
 
 ### 4. Instalar as dependências
 
+cd trabalho-de-html-pet-main\adote-pet
+
 No terminal do VS Code (**Ctrl + '**), dentro da pasta `adote-pet`:
 
 ```bash
