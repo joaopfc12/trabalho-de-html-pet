@@ -21,7 +21,29 @@ const DICAS = [
 ];
 
 
-const LINKS = [];
+const ABRIGOS = [
+  {
+    nome: 'Abrigo Municipal Patas Felizes',
+    tipo: 'Abrigo municipal',
+    bairro: 'Centro',
+    horario: 'Seg a sáb, 9h às 16h',
+    descricao: 'Recebe cães e gatos resgatados das ruas. Todos saem vacinados e castrados.',
+  },
+  {
+    nome: 'ONG Amigos de Quatro Patas',
+    tipo: 'ONG',
+    bairro: 'Boa Vista',
+    horario: 'Feiras de adoção aos sábados, 10h às 15h',
+    descricao: 'Grupo de voluntários que resgata e cuida de animais até encontrarem um lar.',
+  },
+  {
+    nome: 'Lar Temporário Cantinho Animal',
+    tipo: 'Lar temporário',
+    bairro: 'Casa Amarela',
+    horario: 'Visitas com agendamento',
+    descricao: 'Acolhe animais menores e exóticos: coelhos, aves, hamsters e répteis.',
+  },
+];
 
 async function abrirLink(url) {
   try {
@@ -29,6 +51,31 @@ async function abrirLink(url) {
   } catch {
     Alert.alert('Erro', 'Não foi possível abrir o link.');
   }
+}
+
+function CartaoAbrigo({ abrigo }) {
+  const conteudo = (
+    <>
+      <Text style={styles.cartaoTitulo}>
+        {abrigo.nome}
+        {abrigo.url ? ' ↗' : ''}
+      </Text>
+      <Text style={styles.abrigoTipo}>
+        {abrigo.tipo} · {abrigo.bairro}
+      </Text>
+      <Text style={styles.cartaoTexto}>{abrigo.descricao}</Text>
+      <Text style={styles.abrigoHorario}>🕒 {abrigo.horario}</Text>
+    </>
+  );
+
+  if (abrigo.url) {
+    return (
+      <Pressable style={styles.cartao} onPress={() => abrirLink(abrigo.url)}>
+        {conteudo}
+      </Pressable>
+    );
+  }
+  return <View style={styles.cartao}>{conteudo}</View>;
 }
 
 export default function AdocaoScreen() {
@@ -46,12 +93,10 @@ export default function AdocaoScreen() {
       ))}
 
       <Text style={styles.secao}>Abrigos e ONGs</Text>
-      {LINKS.length === 0 && <Text style={styles.cartaoTexto}>Lista em construção.</Text>}
-      {LINKS.map((link) => (
-        <Pressable key={link.url} style={styles.link} onPress={() => abrirLink(link.url)}>
-          <Text style={styles.linkTexto}>{link.nome} ↗</Text>
-        </Pressable>
+      {ABRIGOS.map((abrigo) => (
+        <CartaoAbrigo key={abrigo.nome} abrigo={abrigo} />
       ))}
+      <Text style={styles.aviso}>* Abrigos fictícios, usados apenas para demonstração.</Text>
     </ScrollView>
   );
 }

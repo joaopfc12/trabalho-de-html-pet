@@ -9,6 +9,7 @@ export default StyleSheet.create({
   cartaoTitulo: { fontSize: 17, fontWeight: '700', color: cores.tinta },
   cartaoTexto: { fontSize: 15, color: cores.suave, lineHeight: 21 },
   secao: { fontSize: 20, fontWeight: '800', color: cores.tinta, marginTop: 12 },
-  link: { backgroundColor: cores.card, borderRadius: 12, padding: 14 },
-  linkTexto: { fontSize: 16, fontWeight: '600', color: cores.primaria },
+  abrigoTipo: { fontSize: 14, fontWeight: '600', color: cores.primaria },
+  abrigoHorario: { fontSize: 14, color: cores.tinta, marginTop: 4 },
+  aviso: { fontSize: 13, color: cores.suave, fontStyle: 'italic' },
 });
